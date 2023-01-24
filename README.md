@@ -68,6 +68,7 @@ php artisan migrate
 
 #### PDOException::("could not find driver")
 * https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=meelong0&logNo=140126617258
+
 php.ini
 ```ini
 extension=php_pdo_mysql.dll

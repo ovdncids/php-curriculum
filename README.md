@@ -121,7 +121,7 @@ Body: raw JSON
 }
 ```
 
-#### 로그인 밑 토큰 생성
+#### 로그인과 토큰 생성
 * https://laravel.com/docs/9.x/sanctum#issuing-api-tokens
 
 routes/api.php
@@ -160,7 +160,91 @@ Body: raw JSON
     "device_name": "iPhone"
 }
 ```
-* 로그안 하면 `토큰키`를 출력 하고 `personal_access_tokens` 테이블에 `device_name`으로 데이터가 생성 된다.
+* 로그안 하면 `토큰`를 출력 하고 `personal_access_tokens` 테이블에 `device_name`으로 데이터가 생성 된다.
+
+#### 토큰을 이용한 사용자 정보 받기
+Postman
+```sh
+Method: GET
+URL: http://localhost:8000/api/user
+Authorization: Type > Bearer > Token > http://localhost:8000/api/login에서 받은 토큰 넣기
+```
+* 해당 User의 모든 정보가 출력 된다.
+
+#### User 정보 필터링 하기
+```sh
+php artisan make:resource UserResource
+```
+
+app/Http/Resources/UserResource.php
+```diff
+- return parent::toArray($request);
+```
+```php
+return [
+    'id' => $this->id,
+    'name' => $this->name,
+    'email' => $this->email,
+    'profile_photo_url' => $this->profile_photo_url
+];
+```
+
+routes/api.php
+```diff
+- return $request->user();
+```
+```php
+use App\Http\Resources\UserResource;
+
+return (new UserResource($request->user()))->response();
+```
+* Postman 확인
+
+##### 응답 Header 추가
+app/Http/Resources/UserResource.php
+```php
+public function withResponse($request, $response)
+{
+    $response->header('abc', '123');
+}
+```
+
+#### 로그아웃
+* https://laravel.com/docs/9.x/sanctum#revoking-tokens
+
+routes/api.php
+```php
+Route::middleware('auth:sanctum')
+    ->get('/logout', function (Request $request) {
+        // 해당 User가 로그인된 모든 device에 로그아웃
+        $request->user()->tokens()->delete();
+        // 해당 User의 현재 토큰만 로그아웃
+        // $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'message' => '토큰만료 성공',
+            'array' => [1, 2, 3]
+        ]);
+        // response('토큰만료 성공', 200)
+        //     ->header('Content-Type', 'text/plain');
+    }
+);
+```
+Postman
+```sh
+Method: GET
+URL: http://localhost:8000/api/logout
+Authorization: Type > Bearer > Token > http://localhost:8000/api/login에서 받은 토큰 넣기
+```
+
+##### 로그 출력
+routes/api.php
+```php
+use Illuminate\Support\Facades\Log;
+
+Log::info('로그 출력');
+```
+
+* `storage/logs/laravel.log` 파일에 로그 쌓임
 
 ### 이메일 인증
 app/Models/User.php

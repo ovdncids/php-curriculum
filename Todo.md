@@ -63,7 +63,7 @@ php artisan db:seed
 php artisan db:seed --class=TodoSeeder
 ```
 
-### api/v1 경로 생성
+### api/v1/todo 경로 생성
 파일 삭제
 ```diff
 - app/Http/Controllers/TodoController.php
@@ -87,3 +87,94 @@ APP_VERSION=v1
 
 * `app/Providers/RouteServiceProvider.php` 파일은 `api`와 `web` 설정 파일
 
+### Read (Response JSON 스키마 만들기)
+```sh
+php artisan make:resource TodoResource
+```
+
+app/Http/Resources/TodoResource.php
+```php
+return [
+    'id' => $this->id,
+    'title' => $this->title,
+    'content' => $this->content,
+    'deadline' => ($this->deadline == null) ? 'Free' : date('Y-m-d', strtotime($this->deadline)),
+    'isDone' => $this->isDone,
+    'updated_at' => $this->updated_at->diffForHumans()
+];
+```
+* `diffForHumans`: 지금부터 몇 분전
+
+app/Http/Controllers/API/TodoController.php
+```php
+use App\Models\Todo;
+use App\Http\Resources\TodoResource;
+
+public function index()
+{
+    // return TodoResource::collection(Todo::all());
+    return TodoResource::collection(Todo::orderBy('id', 'desc')->paginate(10));
+}
+```
+
+### Create
+```sh
+php artisan make:request TodoRequest
+```
+
+app/Http/Requests/TodoRequest.php
+```php
+public function authorize()
+{
+    return true;
+}
+
+public function rules()
+{
+    return [
+        'title' => 'required:max:255',
+        'content' => 'max:1000',
+        'deadline' => 'date',
+        'isDone' => 'required|boolean'
+    ];
+}
+```
+* `authorize: true` 인증이 완료된 상태
+
+app/Models/Todo.php
+```php
+use HasFactory;
+protected $fillable = [
+    'title',
+    'content',
+    'deadline',
+    'isDone'
+];
+```
+
+app/Http/Controllers/API/TodoController.php
+```php
+use App\Http\Requests\TodoRequest;
+
+public function store(TodoRequest $request)
+{
+    $todoInput = $request->all();
+    $newTodo = Todo::create($todoInput);
+    return new TodoResource($newTodo);
+}
+```
+
+Postman
+```sh
+Method: POST
+URL: http://localhost:8000/api/v1/todo
+Headers: Accept application/json
+Body: raw JSON
+```
+```json
+{
+    "title": "Title",
+    "content": "Content",
+    "isDone": true
+}
+```

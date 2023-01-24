@@ -120,7 +120,7 @@ public function index()
 Postman
 ```sh
 Method: GET
-URL: http://localhost:8000/api/v1/todo/1
+URL: http://localhost:8000/api/v1/todo?page=1
 ```
 
 ### Create

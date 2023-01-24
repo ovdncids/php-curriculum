@@ -117,6 +117,12 @@ public function index()
 }
 ```
 
+Postman
+```sh
+Method: GET
+URL: http://localhost:8000/api/v1/todo/1
+```
+
 ### Create
 ```sh
 php artisan make:request TodoRequest
@@ -158,9 +164,8 @@ use App\Http\Requests\TodoRequest;
 
 public function store(TodoRequest $request)
 {
-    $todoInput = $request->all();
-    $newTodo = Todo::create($todoInput);
-    return new TodoResource($newTodo);
+    $createTodo = Todo::create($request->all());
+    return new TodoResource($createTodo);
 }
 ```
 
@@ -168,6 +173,84 @@ Postman
 ```sh
 Method: POST
 URL: http://localhost:8000/api/v1/todo
+Headers: Accept application/json
+Body: raw JSON
+```
+```json
+{
+    "title": "Title",
+    "content": "Content",
+    "isDone": true
+}
+```
+
+### Read/{id}
+app/Http/Controllers/API/TodoController.php
+```php
+public function show($id)
+{
+    if (Todo::where('id', $id)->exists()) {
+        return new TodoResource(Todo::find($id));
+    } else {
+        return response()->json([
+            "message" => "Not found"
+        ], \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND);
+    }
+}
+```
+
+Postman
+```sh
+Method: GET
+URL: http://localhost:8000/api/v1/todo/1
+```
+
+### Delete/{id}
+app/Http/Controllers/API/TodoController.php
+```php
+public function destroy($id)
+{
+    if (Todo::where('id', $id)->exists()) {
+        $deleteTodo = Todo::find($id);
+        $deleteTodo->delete();
+        return response()->json([
+            "message" => "Deleted"
+        ]);
+    } else {
+        return response()->json([
+            "message" => "Not found"
+        ], \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND);
+    }
+}
+```
+
+Postman
+```sh
+Method: DELETE
+URL: http://localhost:8000/api/v1/todo/1
+```
+
+### Update/{id}
+app/Http/Controllers/API/TodoController.php
+```php
+public function update(TodoRequest $request, $id)
+{
+    if (Todo::where('id', $id)->exists()) {
+        $updateTodo = Todo::find($id);
+        $updateTodo->update($request->all());
+        return new TodoResource($updateTodo);
+    } else {
+        return response()->json([
+            "message" => "Not found"
+        ], \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND);
+    }
+}
+```
+
+Postman
+```sh
+Method: PUT or PATCH
+URL: http://localhost:8000/api/v1/todo/2
 Headers: Accept application/json
 Body: raw JSON
 ```

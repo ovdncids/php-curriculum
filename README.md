@@ -74,3 +74,26 @@ php.ini
 ```ini
 extension=php_pdo_mysql.dll
 ```
+
+### 이메일 인증
+app/Models/User.php
+```diff
+- class User extends Authenticatable
++ class User extends Authenticatable implements MustVerifyEmail
+```
+
+config/fortify.php
+```diff
+- // Features::emailVerification(),
++ Features::emailVerification(),
+```
+
+#### Mailtrap (테스트 이메일 서비스: smtp 제공, Inbox: 1개 무료 사용 가능)
+* https://mailtrap.io
+
+```sh
+Email Testing > Inboxes > My Inbox > SMTP Settings > Integrations > Laravel 7+ > 설정 복사
+.env 파일에 설정 적용
+
+# 회원 가입 하면, 인증 이메일 자동 발송 > My Inbox에서 확인
+```

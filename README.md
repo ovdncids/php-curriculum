@@ -64,6 +64,7 @@ php artisan jetstream:install livewire
 npm install
 npm run build
 php artisan migrate
+php artisan serve
 ```
 
 #### PDOException::("could not find driver")

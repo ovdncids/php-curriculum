@@ -20,6 +20,15 @@ PHP 8.2 > VS16 x64 Non Thread Safe > Zip > 압축 풀고 > C:\Program Files로 �
 Download > 설치 > PHP 경로 선택 > 완료 되면 알아서 환경 변수에 php, composer 경로 추가 됨
 ```
 
+### VSCode 확장 프로그램
+```sh
+# PHP 라이브러리에 접근 가능
+PHP Intelephense
+
+# Laravel 라이브러리에 접근 가능
+Laravel Extra Intellisense
+```
+
 ### 프로젝트 생성
 ```sh
 composer global require laravel/installer
@@ -74,6 +83,84 @@ php.ini
 ```ini
 extension=php_pdo_mysql.dll
 ```
+
+### API 회원 연동
+#### 생성
+```sh
+# route 목록
+php artisan route:list
+```
+
+config/jetstream.php
+```diff
+- // Features::api(),
++ Features::api(),
+```
+
+routes/api.php
+```php
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
+
+Route::middleware(['guest:'.config('fortify.guard')])
+    ->post('/register', [RegisteredUserController::class, 'store']);
+```
+
+Postman
+```sh
+Method: POST
+URL: http://localhost:8000/api/register
+Headers: Accept application/json
+Body: raw JSON
+```
+```json
+{
+    "name": "홍길동",
+    "email": "a@a.com",
+    "password": "password",
+    "password_confirmation": "password"
+}
+```
+
+#### 로그인 밑 토큰 생성
+* https://laravel.com/docs/9.x/sanctum#issuing-api-tokens
+
+routes/api.php
+```php
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use App\Models\User;
+
+Route::post('/login', function (Request $request) {
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+        'device_name' => 'required'
+    ]);
+    $user = User::where('email', $request->email)->first();
+    if (!$user || !Hash::check($request->password, $user->password)) {
+        throw ValidationException::withMessages([
+            'email' => ['이메일 또는 비밀번호가 일치하지 않습니다.']
+        ]);
+    }
+    return $user->createToken($request->device_name)->plainTextToken;
+});
+```
+
+Postman
+```sh
+Method: POST
+URL: http://localhost:8000/api/login
+Headers: Accept application/json
+Body: raw JSON
+```
+```json
+{
+    "email": "a@a.com",
+    "password": "password",
+    "device_name": "iPhone"
+}
+```
+* 로그안 하면 `토큰키`를 출력 하고 `personal_access_tokens` 테이블에 `device_name`으로 데이터가 생성 된다.
 
 ### 이메일 인증
 app/Models/User.php

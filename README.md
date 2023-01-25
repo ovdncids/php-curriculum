@@ -6,8 +6,9 @@
 ### Mac
 ```sh
 brew install php
-# 8.2 버전이 아니면 터미널 재시작
 php -v
+# php 8.2 버전이 아니면 터미널 재시작
+
 brew install composer
 ```
 

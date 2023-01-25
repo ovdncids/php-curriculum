@@ -11,6 +11,12 @@ php -v
 
 brew install composer
 ```
+```sh
+vi ~/.zshrc
+
+# composer
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+```
 
 ### Windows
 * https://windows.php.net/download

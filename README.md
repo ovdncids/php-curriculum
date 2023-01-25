@@ -176,7 +176,7 @@ Postman
 ```sh
 Method: GET
 URL: http://localhost:8000/api/user
-Authorization: Type > Bearer > Token > http://localhost:8000/api/login에서 받은 토큰 넣기
+Authorization: Type > Bearer Token > Token > http://localhost:8000/api/login에서 받은 토큰 넣기
 ```
 * 해당 User의 모든 정보가 출력 된다.
 * Headers > 'Authorization', 'Bearer {토큰}' 이렇게 Headers 값이 생긴다.

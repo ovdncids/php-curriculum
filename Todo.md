@@ -85,6 +85,12 @@ Route::prefix(env('APP_VERSION').'/')->group(function () {
 APP_VERSION=v1
 ```
 
+Postman
+```sh
+Method: GET
+URL: http://localhost:8000/api/v1/todo
+```
+* `GET` 호출은 할 수 있지만 Body에 아무것도 없다.
 * `app/Providers/RouteServiceProvider.php` 파일은 `api`와 `web` 설정 파일
 
 ### Read (Response JSON 스키마 만들기)
@@ -93,6 +99,9 @@ php artisan make:resource TodoResource
 ```
 
 app/Http/Resources/TodoResource.php
+```diff
+- return parent::toArray($request);
+```
 ```php
 return [
     'id' => $this->id,

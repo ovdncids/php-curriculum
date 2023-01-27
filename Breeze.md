@@ -35,3 +35,13 @@ php artisan serve
 ## 회원 API
 * `api/register`는 `MVC용`으로 사용되고 있는 `routes/auth.php`에서 `Route::post('/register', ...)` 부분을 복사해 온다.
 * `api/login`, `api/logout`은 `jetstream`과 동일
+
+## Next Frontend
+* https://larainfo.com/blogs/laravel-breeze-api-install-setup-authentication-with-nextjs
+* 회원 부분은 `MVC` 방식으로 처리한다.
+```sh
+git clone https://github.com/laravel/breeze-next.git
+npm install
+cp .env.example .env
+npm run dev
+```

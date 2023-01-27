@@ -31,3 +31,7 @@ php artisan breeze:install api
 php artisan migrate
 php artisan serve
 ```
+
+## 회원 API
+* `api/register`는 `MVC용`으로 사용되고 있는 `routes/auth.php`에서 `Route::post('/register', ...)` 부분을 복사해 온다.
+* `api/login`, `api/logout`은 `jetstream`과 동일

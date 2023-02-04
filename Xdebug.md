@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 ```
 
-* `phpinfo()`에서 받은 모든 정보를 `https://xdebug.org/wizard.php`에 복사
+* `phpinfo()`에서 받은 모든 정보를 [https://xdebug.org/wizard.php](https://xdebug.org/wizard.php)에 복사
 * 해당 사이트에서 지시하는 내용 모두 실행
 * `/usr/local/lib/php/pecl/20220829` 폴더는 생성 해야함
 * `phpinfo()`에서 `Xdebug` 보이면 완료

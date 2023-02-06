@@ -26,6 +26,7 @@ xdebug.start_with_request = yes
 
 ## Xcode 실행 및 디버그
 * Xcode 실행 및 디버그에서 `launch.json` 생성
+* ❕ `launch.json`에서 `F5` 눌러야 `디버깅 모드` 시작
 * 터미널에서 `php artisan serve` (Javascript Debug Terminal 아님)
 * 디버그 하고 싶은 라인에서 `break point` 찍기
 * 확인

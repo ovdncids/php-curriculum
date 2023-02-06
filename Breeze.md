@@ -22,7 +22,7 @@ create database laravel_breeze_api;
 DB_DATABASE=laravel_breeze_api
 ```
 
-## Breeze 설치
+## Breeze & API 설치
 ```sh
 composer require laravel/breeze --dev
 
@@ -32,9 +32,17 @@ php artisan migrate
 php artisan serve
 ```
 
-## 회원 API
+### 회원 API
 * `api/register`는 `MVC용`으로 사용되고 있는 `routes/auth.php`에서 `Route::post('/register', ...)` 부분을 복사해 온다.
 * `api/login`, `api/logout`은 `jetstream`과 동일
+
+### CSRF token mismatch.
+app/Http/Middleware/VerifyCsrfToken.php
+```php
+protected $except = [
+    '/api/*'
+];
+```
 
 ## Next Frontend
 * https://larainfo.com/blogs/laravel-breeze-api-install-setup-authentication-with-nextjs

@@ -36,6 +36,17 @@ php artisan serve
 * `api/register`는 `MVC용`으로 사용되고 있는 `routes/auth.php`에서 `Route::post('/register', ...)` 부분을 복사해 온다.
 * `api/login`, `api/logout`은 `jetstream`과 동일
 
+### 회원 생성 API
+* POST http://localhost:8000/api/register
+```json
+{
+    "name": "홍길동",
+    "email": "a@a.com",
+    "password": "password",
+    "password_confirmation": "password"
+}
+```
+
 ### CSRF token mismatch.
 app/Http/Middleware/VerifyCsrfToken.php
 ```php

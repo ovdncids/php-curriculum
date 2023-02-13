@@ -1,4 +1,4 @@
-# DB 연동
+# Simple DB 연동
 
 ## mysql_query
 ```php

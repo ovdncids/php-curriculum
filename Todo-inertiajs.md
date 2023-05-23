@@ -3,6 +3,8 @@
 routes/web.php
 ```php
 use Illuminate\Support\Facades\Log;
+use App\Http\Resources\TodoResource;
+use App\Models\Todo;
 
 Route::get('/todo', function () {
     $todoList = TodoResource::collection(Todo::orderBy('id', 'desc')->paginate(10));
@@ -57,4 +59,8 @@ const update = (todo) => {
     <hr />
     <button @click="router.get('/login')">Login</button>
 </template>
+```
+
+```sh
+npm run build
 ```

@@ -1,14 +1,15 @@
 # php-curriculum (Laravel)
-* https://laravel.com/docs/9.x
-* https://laravel.kr/docs/9.x/installation
+* https://laravel.com/docs/10.x
+* https://laravel.kr/docs/10.x/installation
 
 ## 설치
 ### Mac
 ```sh
 brew install php
 php -v
-# php 8.x 버전이 아니면 터미널 재시작
+# php 8.x 버전이 아니면 터미널 재시작 (현재 8.2.6)
 
+# composer (현재 2.5.5)
 brew install composer
 ```
 ```sh
@@ -40,11 +41,18 @@ Laravel Extra Intellisense
 
 ### 프로젝트 생성
 ```sh
+# laravel/installer (현재 4.5.0)
 composer global require laravel/installer
+
+# laravel (현재 10.2.1)
 laravel new laravel-study
 
+# 프로젝트 실행
 cd laravel-study
 php artisan serve
+
+# route 목록
+php artisan route:list
 ```
 
 #### 설치 오류
@@ -69,6 +77,8 @@ DB_DATABASE=laravel_study
 
 ## Jetstream (인증 스캐폴딩), fortify (Backend 인증), sanctum (토큰), inertia (Frontend Vue.js), livewire (Frontend php)
 * https://jetstream.laravel.com/2.x/installation.html
+* `Jetstream`은 회원 등록, 로그인, 로그아웃, 회원 정보 등 필수 페이지들을 제공한다.
+
 ### 프로젝트에 Jetstream 설치
 ```sh
 composer require laravel/jetstream
@@ -93,10 +103,14 @@ php.ini
 extension=php_pdo_mysql.dll
 ```
 
+### 회원 등록, 로그인, 로그아웃, 회원 정보 동작 확인
+* http://127.0.0.1:8000/register
+* http://127.0.0.1:8000/user/profile
+
 ### API 회원 연동
 #### 생성
 ```sh
-# route 목록
+# route 목록이 많이 늘었는지 확인
 php artisan route:list
 ```
 
@@ -112,6 +126,11 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 Route::middleware(['guest:'.config('fortify.guard')])
     ->post('/register', [RegisteredUserController::class, 'store']);
+```
+
+```sh
+# route 목록에서 api/register 있는지 확인
+php artisan route:list
 ```
 
 Postman
@@ -131,7 +150,7 @@ Body: raw JSON
 ```
 
 #### 로그인과 토큰 생성
-* https://laravel.com/docs/9.x/sanctum#issuing-api-tokens
+* https://laravel.com/docs/10.x/sanctum#issuing-api-tokens
 
 routes/api.php
 ```php
@@ -169,7 +188,7 @@ Body: raw JSON
     "device_name": "iPhone"
 }
 ```
-* 로그안 하면 `토큰`를 출력 하고 `personal_access_tokens` 테이블에 `device_name`으로 데이터가 생성 된다.
+* 로그인 하면 `토큰`를 출력 하고 `personal_access_tokens` 테이블에 `device_name`으로 데이터가 생성 된다.
 
 #### 토큰을 이용한 사용자 정보 받기
 Postman
@@ -220,7 +239,7 @@ public function withResponse($request, $response)
 ```
 
 #### 로그아웃
-* https://laravel.com/docs/9.x/sanctum#revoking-tokens
+* https://laravel.com/docs/10.x/sanctum#revoking-tokens
 
 routes/api.php
 ```php

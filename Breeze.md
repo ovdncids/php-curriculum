@@ -1,6 +1,6 @@
 # Breeze
 * Backend API로만 프로젝트를 만들때 사용
-* https://laravel.com/docs/9.x/starter-kits#main-content
+* https://laravel.com/docs/10.x/starter-kits#main-content
 * Breeze & Next.js / API
 
 ## Breeze와 Next.js

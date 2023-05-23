@@ -13,10 +13,11 @@ php artisan make:model Todo -a
 ```
 
 ### Todo 스키마 만들기
-database/migrations/날짜_create_todos_table.php
+database/migrations/{날짜}_create_todos_table.php
 ```php
 $table->id();
 ```
+밑으로
 ```php
 $table->string('title');
 $table->longText('content')->nullable();
@@ -33,6 +34,9 @@ php artisan migrate
 
 ### Mock 데이터 만들기
 database/factories/TodoFactory.php
+```diff
+- //
+```
 ```php
 return [
     'title' => $this->faker->text(15),
@@ -83,6 +87,11 @@ Route::prefix(env('APP_VERSION').'/')->group(function () {
 .env
 ```env
 APP_VERSION=v1
+```
+
+```sh
+# route 목록에 api/v1/todo 있는지 확인
+php artisan route:list
 ```
 
 Postman

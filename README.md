@@ -45,10 +45,10 @@ Laravel Extra Intellisense
 composer global require laravel/installer
 
 # laravel (현재 10.2.1)
-laravel new laravel-study
+laravel new laravel_study
 
 # 프로젝트 실행
-cd laravel-study
+cd laravel_study
 php artisan serve
 
 # route 목록

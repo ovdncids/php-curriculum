@@ -2,8 +2,8 @@
 
 ## API 만들기
 ```sh
-mkdir todo-list
-cd todo-list
+mkdir todo_list
+cd todo_list
 
 laravel new api
 cd api

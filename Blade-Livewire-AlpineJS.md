@@ -22,3 +22,4 @@ resources/views/components/modal.blade.phpresources/views/welcome.blade.php
 # AlpineJS
 * https://alpinejs.dev
 * React, Vue.js보다 가벼운 클라이언트 상태관리 라이브러리.
+* Livewire3은 AlpineJS을 포함하고 있어서 바로 사용 가능.

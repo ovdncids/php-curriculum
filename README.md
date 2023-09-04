@@ -49,6 +49,7 @@ laravel new laravel_study
 
 # 프로젝트 실행
 cd laravel_study
+code .
 php artisan serve
 
 # route 목록

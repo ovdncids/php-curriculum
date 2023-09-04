@@ -77,7 +77,7 @@ DB_DATABASE=laravel_study
 ```
 
 ## Jetstream (인증 스캐폴딩), fortify (Backend 인증), sanctum (토큰), inertia (Frontend Vue.js), livewire (Frontend php)
-* https://jetstream.laravel.com/2.x/installation.html
+* https://jetstream.laravel.com/installation.html
 * `Jetstream`은 회원 등록, 로그인, 로그아웃, 회원 정보 등 필수 페이지들을 제공한다.
 
 ### 프로젝트에 Jetstream 설치

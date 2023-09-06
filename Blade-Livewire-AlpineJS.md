@@ -49,7 +49,7 @@ Route::get('/todos', Todos::class);
 
 ### Markup
 resources/views/livewire/todos.blade.php
-```php
+```html
 <div>
     <div>
         <input type="text" />

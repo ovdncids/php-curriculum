@@ -76,7 +76,7 @@ create database laravel_study;
 DB_DATABASE=laravel_study
 ```
 
-##### 로그 출력
+## 로그 출력
 routes/api.php
 ```php
 use Illuminate\Support\Facades\Log;
@@ -85,3 +85,6 @@ Log::info('로그 출력');
 ```
 
 * `storage/logs/laravel.log` 파일에 로그 쌓임
+
+## Tailwind
+* https://tailwindcss.com/docs/guides/laravel

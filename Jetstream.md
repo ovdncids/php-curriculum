@@ -42,16 +42,6 @@ extension=php_pdo_mysql.dll
 php artisan route:list
 ```
 
-<!--
-config/jetstream.php
-```diff
-- // Features::api(),
-+ Features::api(),
-```
-* `user/api-tokens` 경로가 `route:list`에 추가 됨
-* 토큰을 생성할 수 있는 페이지
--->
-
 routes/api.php
 ```php
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
@@ -195,6 +185,15 @@ Method: GET
 URL: http://localhost:8000/api/logout
 Authorization: Type > Bearer > Token > http://localhost:8000/api/login에서 받은 토큰 넣기
 ```
+
+### 토큰 생성 페이지
+config/jetstream.php
+```diff
+- // Features::api(),
++ Features::api(),
+```
+* `user/api-tokens` 경로가 `route:list`에 추가 됨
+* http://localhost:8000/user/api-tokens
 
 ### 이메일 인증
 app/Models/User.php

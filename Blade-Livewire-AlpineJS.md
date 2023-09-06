@@ -24,5 +24,17 @@ resources/views/components/modal.blade.phpresources/views/welcome.blade.php
 * React, Vue.js보다 가벼운 클라이언트 상태관리 라이브러리.
 * Livewire3은 AlpineJS을 포함하고 있어서 바로 사용 가능.
 
-# Tailwind
-* https://tailwindcss.com/docs/guides/laravel
+# Todo List
+## User Table 생성
+```sh
+# 모든 테이블 삭제
+php artisan db:wipe
+
+# database/migrations/*.php 파일을 바탕으로 테이블 생성 쿼리를 실행한다.
+php artisan migrate
+```
+
+## Todo 모델 만들기
+```js
+php artisan make:model Todo -a
+```

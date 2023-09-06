@@ -1,18 +1,19 @@
 # Todo List
 
-## API 만들기
+## API 프로젝트 만들기
 ```sh
 mkdir todo_list
 cd todo_list
 
 laravel new api
 cd api
-
-# Todo 모델 만들기
-php artisan make:model Todo -a
 ```
 
 ### Todo 스키마 만들기
+```sh
+php artisan make:model Todo -a
+```
+
 database/migrations/{날짜}_create_todos_table.php
 ```php
 $table->id();

@@ -67,6 +67,12 @@ php artisan db:seed
 php artisan db:seed --class=TodoSeeder
 ```
 
+#### SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+app/Models/Todo.php
+```php
+public $timestamps = false;
+```
+
 ### api/v1/todo 경로 생성
 파일 삭제
 ```diff

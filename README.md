@@ -119,11 +119,15 @@ extension=php_pdo_mysql.dll
 php artisan route:list
 ```
 
+<!--
 config/jetstream.php
 ```diff
 - // Features::api(),
 + Features::api(),
 ```
+* `user/api-tokens` 경로가 `route:list`에 추가 됨
+* 토큰을 생성할 수 있는 페이지
+-->
 
 routes/api.php
 ```php
@@ -224,12 +228,11 @@ return [
 ```
 
 routes/api.php
-```diff
-- return $request->user();
-```
 ```php
 use App\Http\Resources\UserResource;
-
+```
+```diff
+- return $request->user();
 return (new UserResource($request->user()))->response();
 ```
 * Postman 확인

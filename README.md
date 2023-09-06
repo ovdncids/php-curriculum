@@ -300,7 +300,7 @@ config/fortify.php
 * https://mailtrap.io
 
 ```sh
-Email Testing > Inboxes > My Inbox > SMTP Settings > Integrations > Laravel 7+ > 설정 복사
+Email Testing > Inboxes > My Inbox > SMTP Settings > Integrations > Laravel 9+ > 설정 복사
 .env 파일에 설정 적용
 
 # 회원 가입 하면, 인증 이메일 자동 발송 > My Inbox에서 확인

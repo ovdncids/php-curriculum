@@ -25,16 +25,5 @@ resources/views/components/modal.blade.phpresources/views/welcome.blade.php
 * Livewire3은 AlpineJS을 포함하고 있어서 바로 사용 가능.
 
 # Todo List
-## User Table 생성
-```sh
-# 모든 테이블 삭제
-php artisan db:wipe
-
-# database/migrations/*.php 파일을 바탕으로 테이블 생성 쿼리를 실행한다.
-php artisan migrate
-```
-
-## Todo 모델 만들기
-```js
-php artisan make:model Todo -a
-```
+* [Todo 스키마 만들기](https://github.com/ovdncids/php-curriculum/blob/master/Todo-API.md#todo-스키마-만들기)
+* [mock-데이터-만들기](https://github.com/ovdncids/php-curriculum/blob/master/Todo-API.md#mock-데이터-만들기)

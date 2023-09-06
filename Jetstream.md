@@ -17,10 +17,6 @@ npm install
 npm run build
 php artisan migrate
 php artisan serve
-
-# Class "Laravel\Fortify\Features" not found
-# git 이동등으로 라이브러리가 변경 되는 경우 vender 폴더에 있는 라이브러리를 초기화 한다.
-composer install
 ```
 
 #### PDOException::("could not find driver")

@@ -4,7 +4,7 @@
 
 * [Blade, Livewire, AlpineJS](Blade-Livewire-AlpineJS.md)
 
-* [Todo](Todo.md)
+* [Todo API](Todo-API.md), [Todo inertiajs](Todo-inertiajs.md)
 
 * [Jetstream](Jetstream.md)
 

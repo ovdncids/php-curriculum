@@ -27,3 +27,38 @@ resources/views/components/modal.blade.phpresources/views/welcome.blade.php
 # Todo List
 * [Todo 스키마 만들기](https://github.com/ovdncids/php-curriculum/blob/master/Todo-API.md#todo-스키마-만들기)
 * [mock-데이터-만들기](https://github.com/ovdncids/php-curriculum/blob/master/Todo-API.md#mock-데이터-만들기)
+
+## 페이지 만들기
+```sh
+# Livewire 설치
+composer require livewire/livewire
+
+# Livewire 컴포넌트 설치
+php artisan make:livewire todos
+
+# 기본 레이아웃 설치
+php artisan livewire:layout
+```
+
+routes/web.php
+```php
+use App\Livewire\Todos;
+ 
+Route::get('/todos', Todos::class);
+```
+
+### Markup
+resources/views/livewire/todos.blade.php
+```php
+<div>
+    <div>
+        <input type="text" />
+        <button>Update</button>
+        <button>Delete</button>
+    </div>
+    <hr />
+    <button>Create</button>
+    <hr />
+    <button>Login</button>
+</div>
+```

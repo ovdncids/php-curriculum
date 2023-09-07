@@ -18,7 +18,7 @@ Route::get('/phpinfo', function () {
 
 ## Xcode 설정
 * `PHP Debug` 확장 설치
-* `PHP Debug` 설명에 명시된 `php.ini` 설정 추가 (/opt/homebrew/etc/php/8.2/php.ini)
+* `PHP Debug` 설명에 명시된 `php.ini` 설정 추가 `/opt/homebrew/etc/php/8.2/php.ini`
 ```ini
 ; Xdebug
 xdebug.mode = debug

@@ -96,6 +96,7 @@ resources/views/livewire/todos.blade.php
 @endforeach
 {{ $todos->links() }}
 ```
+* https://github.com/ovdncids/php-curriculum/blob/master/Todo-API.md#컬럼 포맷 변경
 
 ### Todo Create
 app/Livewire/Todos.php

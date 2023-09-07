@@ -116,6 +116,7 @@ URL: http://localhost:8000/api/v1/todo
 * `app/Providers/RouteServiceProvider.php` 파일은 `api`와 `web` 설정 파일
 
 ### Read (Response JSON 스키마 만들기)
+#### 컬럼 포맷 변경
 ```sh
 php artisan make:resource TodoResource
 ```

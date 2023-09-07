@@ -98,6 +98,11 @@ use Illuminate\Support\Facades\Log;
 Log::info('로그 출력');
 ```
 
+## 서버 로그 출력
+```php
+error_log('서버 로그 출력');
+```
+
 * `storage/logs/laravel.log` 파일에 로그 쌓임
 
 ## Tailwind

@@ -53,6 +53,7 @@ resources/views/livewire/todos.blade.php
 <div>
     <div>
         <input type="text" />
+        <input type="text" />
         <button>Update</button>
         <button>Delete</button>
     </div>
@@ -75,7 +76,7 @@ class Todos extends Component
 
     public function render()
     {
-        $todos = Todo::paginate(10);
+        $todos = Todo::orderBy('id', 'desc')->paginate(10);
         return view('livewire.todos', [
             'todos' => $todos
         ]);
@@ -88,9 +89,50 @@ resources/views/livewire/todos.blade.php
 @foreach ($todos as $todo)
 <div>
     <input type="text" value="{{ $todo->title }}"/>
+    <input type="text" value="{{ $todo->content }}"/>
     <button>Update</button>
     <button>Delete</button>
 </div>
 @endforeach
 {{ $todos->links() }}
+```
+
+### Todo Create
+app/Livewire/Todos.php
+```php
+public $title;
+public $content;
+
+public function create()
+{
+    $todo = [
+        'title' => $this->title,
+        'content' => $this->content
+    ];
+    Todo::create($todo);
+    return redirect()->to('/todos');
+}
+```
+
+resources/views/livewire/todos.blade.php
+```diff
+- <button>Create</button>
+```
+```php
+<form wire:submit="create"> 
+    <input type="text" placeholder="Title" wire:model="title">
+    <input type="text" placeholder="Content" wire:model="content">
+    <button type="submit">Create</button>
+</form>
+```
+
+#### Add [title] to fillable property to allow mass assignment on [App\Models\Todo].
+app/Models/Todo.php
+```php
+protected $fillable = [
+    'title',
+    'content',
+    'deadline',
+    'isDone'
+];
 ```

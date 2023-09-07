@@ -5,7 +5,7 @@
 ## phpinfo() 보기
 routes/web.php
 ```php
-Route::get('/', function () {
+Route::get('/phpinfo', function () {
     phpinfo();
 });
 ```
@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 ## Xcode 설정
 * `PHP Debug` 확장 설치
-* `PHP Debug` 설명에 명시된 `php.ini` 설정 추가
+* `PHP Debug` 설명에 명시된 `php.ini` 설정 추가 (/opt/homebrew/etc/php/8.2/php.ini)
 ```ini
 ; Xdebug
 xdebug.mode = debug
@@ -26,8 +26,9 @@ xdebug.start_with_request = yes
 ```
 
 ## Xcode 실행 및 디버그
-* Xcode 실행 및 디버그 탭에서 `launch.json` 생성 (디버그 탭에서 `톱니바퀴 아이콘` 누름)
-* ❕ `launch.json` 파일 열고 `F5` 눌러야 `디버깅 모드` 시작
+* Xcode 실행 및 디버그 탭에서 `launch.json` 파일 만들기
+* `launch.json` 파일 열리고 > 구성 추가... > `PHP: Listen for Xdebug` (configurations 안에 추가됨)
+* ❕ `launch.json` 파일에서 `F5` 눌러야 `디버깅 모드` 시작
 * 터미널에서 `php artisan serve` (Javascript Debug Terminal 아님)
 * 디버그 하고 싶은 라인에서 `break point` 찍기
 * 확인

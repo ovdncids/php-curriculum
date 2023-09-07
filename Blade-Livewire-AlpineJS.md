@@ -43,7 +43,7 @@ php artisan livewire:layout
 routes/web.php
 ```php
 use App\Livewire\Todos;
- 
+
 Route::get('/todos', Todos::class);
 ```
 
@@ -61,4 +61,36 @@ resources/views/livewire/todos.blade.php
     <hr />
     <button>Login</button>
 </div>
+```
+
+### Todo Read
+app/Livewire/Todos.php
+```php
+use Livewire\WithPagination;
+use App\Models\Todo;
+
+class Todos extends Component
+{
+    use WithPagination;
+
+    public function render()
+    {
+        $todos = Todo::paginate(10);
+        return view('livewire.todos', [
+            'todos' => $todos
+        ]);
+    }
+}
+```
+
+resources/views/livewire/todos.blade.php
+```php
+@foreach ($todos as $todo)
+<div>
+    <input type="text" value="{{ $todo->title }}"/>
+    <button>Update</button>
+    <button>Delete</button>
+</div>
+@endforeach
+{{ $todos->links() }}
 ```

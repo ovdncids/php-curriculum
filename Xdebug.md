@@ -32,3 +32,6 @@ xdebug.start_with_request = yes
 * 터미널에서 `php artisan serve` `재시작` (Javascript Debug Terminal 아님)
 * 디버그 하고 싶은 라인에서 `break point` 찍기
 * 확인
+
+## Windows
+* https://xdebug.org/docs/install#windows

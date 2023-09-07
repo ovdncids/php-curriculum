@@ -87,16 +87,16 @@ class Todos extends Component
 resources/views/livewire/todos.blade.php
 ```php
 @foreach ($todos as $todo)
-<div>
-    <input type="text" value="{{ $todo->title }}"/>
-    <input type="text" value="{{ $todo->content }}"/>
+<div wire:key="{{ $loop->index }}">
+    <input type="text" value="{{ $todo->title }}" />
+    <input type="text" value="{{ $todo->content }}" />
     <button>Update</button>
     <button>Delete</button>
 </div>
 @endforeach
 {{ $todos->links() }}
 ```
-* https://github.com/ovdncids/php-curriculum/blob/master/Todo-API.md#컬럼 포맷 변경
+* https://github.com/ovdncids/php-curriculum/blob/master/Todo-API.md#컬럼-포맷-변경
 
 ### Todo Create
 app/Livewire/Todos.php
@@ -120,9 +120,9 @@ resources/views/livewire/todos.blade.php
 - <button>Create</button>
 ```
 ```php
-<form wire:submit="create"> 
-    <input type="text" placeholder="Title" wire:model="title">
-    <input type="text" placeholder="Content" wire:model="content">
+<form wire:submit="create">
+    <input type="text" placeholder="Title" wire:model="title" />
+    <input type="text" placeholder="Content" wire:model="content" />
     <button type="submit">Create</button>
 </form>
 ```
@@ -136,4 +136,46 @@ protected $fillable = [
     'deadline',
     'isDone'
 ];
+```
+
+### Todo Delete
+app/Livewire/Todos.php
+```php
+public function delete(Todo $todo)
+{
+    $todo->delete();
+}
+```
+
+resources/views/livewire/todos.blade.php
+```diff
+- <button>Delete</button>
+```
+```php
+<button wire:click="delete({{ $todo->id }})">Delete</button>
+```
+
+### Todo Update
+app/Livewire/Todos.php
+```php
+public function update($id, $title, $content)
+{
+    Todo::where('id', $id)->update([
+        'title' => $title,
+        'content' => $content
+    ]);
+}
+```
+
+resources/views/livewire/todos.blade.php
+```php
+<div
+    wire:key="{{ $loop->index }}"
+    x-data="{ id: '{{ $todo->id }}', title: '{{ $todo->title }}', content: '{{ $todo->content }}' }"
+>
+    <input type="text" x-model="title" />
+    <input type="text" x-model="content" />
+    <button x-on:click="$wire.update(id, title, content)">Update</button>
+    <button wire:click="delete({{ $todo->id }})">Delete</button>
+</div>
 ```

@@ -73,6 +73,9 @@ app/Models/Todo.php
 ```php
 public $timestamps = false;
 ```
+또는
+
+`database/migrations/{날짜}_create_todos_table.php` 파일에서 `$table->timestamps();` 지워진 상태 따라서 `복구`한다.
 
 ### api/v1/todo 경로 생성
 파일 삭제

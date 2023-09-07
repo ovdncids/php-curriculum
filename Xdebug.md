@@ -12,8 +12,9 @@ Route::get('/', function () {
 
 * `phpinfo()`에서 받은 모든 정보를 [https://xdebug.org/wizard.php](https://xdebug.org/wizard.php)에 복사
 * 해당 사이트에서 지시하는 내용 모두 실행
-* `/usr/local/lib/php/pecl/20220829` 폴더는 생성 해야함
-* `phpinfo()`에서 `Xdebug` 보이면 완료
+  - `phpize`는 권한이 없을 수 있음 `sudo phpize`
+  - `/usr/local/lib/php/pecl/20220829` 폴더는 생성 해야함
+* `phpinfo()`에서 `Xdebug` 이미지 보이면 성공 안보이면 실패
 
 ## Xcode 설정
 * `PHP Debug` 확장 설치

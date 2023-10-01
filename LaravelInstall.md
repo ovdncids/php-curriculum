@@ -67,6 +67,16 @@ php.ini
 extension=php_fileinfo
 ```
 
+* https://stackoverflow.com/questions/41274829/php-error-the-zip-extension-and-unzip-command-are-both-missing-skipping
+```sh
+Failed to download psr/log from dist: The zip extension and unzip command are both missing, skipping.
+```
+php.ini
+```ini
+# 주석 삭제
+extension=zip
+```
+
 ## MySQL 연결
 ```sh
 # root 권한으로 로그인

@@ -29,6 +29,7 @@ PHP 8.2 > VS16 x64 Non Thread Safe > Zip > 압축 풀고 > C:\Program Files로 �
 ```sh
 Download > 설치 > PHP 경로 선택 > 완료 되면 알아서 환경 변수에 php, composer 경로 추가 됨
 ```
+* [vcruntime140.dll' 14.0 is not compatible with this PHP build linked with 14.16 in Unknown on line 0](https://phodobit.kr/43)
 
 ### VSCode 확장 프로그램
 ```sh

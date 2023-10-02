@@ -85,6 +85,15 @@ class Todos extends Component
 ```
 
 resources/views/livewire/todos.blade.php
+```diff
+- <div>
+-     <input type="text" />
+-     <input type="text" />
+-     <button>Update</button>
+-     <button>Delete</button>
+- </div>
+```
+
 ```php
 @foreach ($todos as $todo)
 <div wire:key="{{ $loop->index }}">

@@ -90,7 +90,7 @@ DB_DATABASE=laravel_study
 ## 오류들
 ### Class "Laravel\Fortify\Features" not found
 ```sh
-# git 이동등으로 라이브러리가 변경 되는 경우 vender 폴더에 있는 라이브러리를 초기화 한다.
+# git 이동등으로 라이브러리가 변경 되는 경우 vender 폴더에 있는 라이브러리를 composer.lock 기준으로 초기화 한다.
 composer install
 ```
 

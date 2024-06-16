@@ -9,3 +9,9 @@
 * [Jetstream](Jetstream.md)
 
 * [Breeze](Breeze.md)
+
+# 일반 PHP
+```sh
+brew install php
+php -S localhost:8080
+```
